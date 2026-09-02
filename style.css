@@ -112,3 +112,314 @@ th { background: var(--bg-input); color: var(--text-muted); font-size: 11px; }
     .glass-card { border: none; padding: 0; background: white; }
     th, td { color: black; border-color: #ccc; }
 }
+/* =========================================
+   RESPONSIVE UNTUK TABLET & HP
+   ========================================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        padding: 0 14px;
+    }
+
+    /* Header */
+    .hero {
+        padding: 22px 0 16px 0;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .badge-tag {
+        font-size: 10px;
+        padding: 4px 9px;
+    }
+
+    /* Navigasi */
+    .tab-container {
+        padding: 8px 10px;
+        gap: 6px;
+        overflow-x: auto;
+    }
+
+    .tab-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+        min-width: 110px;
+        flex: 1;
+        white-space: nowrap;
+    }
+
+    /* Content */
+    .content-area {
+        margin-top: 18px;
+    }
+
+    /* Grid menjadi 1 kolom */
+    .grid-2-cols {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Statistik */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-icon {
+        font-size: 22px;
+    }
+
+    .stat-info p {
+        font-size: 21px;
+    }
+
+    /* Card */
+    .glass-card {
+        padding: 17px;
+        border-radius: 12px;
+    }
+
+    .card-header {
+        margin-bottom: 14px;
+    }
+
+    .card-header h2 {
+        font-size: 16px;
+    }
+
+    .card-subtitle {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    /* Form */
+    .form-group input,
+    .form-group select {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .form-group label {
+        font-size: 11px;
+    }
+
+    .file-drop-area {
+        padding: 20px 12px;
+        font-size: 12px;
+    }
+
+    /* Tombol */
+    .btn {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .btn-sm {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    /* Header tabel */
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .action-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .action-buttons .btn {
+        flex: 1;
+    }
+
+    /* Filter */
+    .filter-container {
+        flex-wrap: wrap;
+    }
+
+    /* Tabel bisa digeser */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    th {
+        font-size: 10px;
+    }
+
+    /* Pohon keputusan */
+    .tree-container {
+        font-size: 11px;
+        overflow-x: auto;
+    }
+}
+
+
+/* HP kecil */
+@media (max-width: 480px) {
+
+    body {
+        padding-bottom: 30px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    /* Header */
+    .hero {
+        padding: 18px 0 14px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+    }
+
+    /* Navigasi HP */
+    .tab-container {
+        padding: 7px 8px;
+        gap: 5px;
+    }
+
+    .tab-btn {
+        min-width: 95px;
+        padding: 9px 8px;
+        font-size: 11px;
+    }
+
+    /* Content */
+    .content-area {
+        margin-top: 14px;
+    }
+
+    /* Card */
+    .glass-card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    .card-subtitle {
+        font-size: 10px;
+    }
+
+    /* Statistik */
+    .stat-card {
+        padding: 12px;
+        gap: 9px;
+    }
+
+    .stat-icon {
+        font-size: 20px;
+    }
+
+    .stat-info h3 {
+        font-size: 10px;
+    }
+
+    .stat-info p {
+        font-size: 19px;
+    }
+
+    .stat-info small {
+        font-size: 9px;
+    }
+
+    /* Form */
+    .form-group {
+        margin-bottom: 11px;
+    }
+
+    .form-group label {
+        font-size: 10px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 9px;
+        font-size: 11px;
+    }
+
+    /* CSV info */
+    .csv-info-box {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    /* Tombol */
+    .btn {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+    /* Action buttons */
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+
+    /* Badge */
+    .badge {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+
+    /* Filter */
+    .filter-container {
+        gap: 4px;
+    }
+
+    .filter-label {
+        font-size: 10px;
+    }
+
+    .btn-filter {
+        padding: 4px 9px;
+        font-size: 9px;
+    }
+
+    /* Tree */
+    .tree-container {
+        padding: 10px;
+        font-size: 10px;
+    }
+}
