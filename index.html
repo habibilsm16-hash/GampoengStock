@@ -1,223 +1,583 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GampoengStock - Sistem Klasifikasi C4.5</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>GampoengStock - Sistem Klasifikasi C4.5</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- HEADER SISTEM -->
     <header class="hero">
-        <div class="container">
-            <span class="badge-tag">AI & Data Mining System</span>
-            <h1 class="logo">Gampoeng<span>Stock</span></h1>
-            <p class="subtitle">Sistem Klasifikasi Urgensi Pengadaan Stok Menggunakan Algoritma C4.5</p>
-        </div>
+        
     </header>
 
     <!-- NAVIGASI 3 BAGIAN -->
     <nav class="tab-navigation">
         <div class="container tab-container">
-            <button class="tab-btn active" onclick="openTab('dasbor', this)">📊 1. Ringkasan & Logika C4.5</button>
-            <button class="tab-btn" onclick="openTab('input-data', this)">📝 2. Input Data (Manual & CSV)</button>
-            <button class="tab-btn" onclick="openTab('tabel-hasil', this)">📋 3. Hasil & Laporan</button>
+
+            <button class="tab-btn active" onclick="openTab('dasbor', this)">
+                📊 1. Ringkasan & Logika C4.5
+            </button>
+
+            <button class="tab-btn" onclick="openTab('input-data', this)">
+                📝 2. Input Data (Manual & CSV)
+            </button>
+
+            <button class="tab-btn" onclick="openTab('tabel-hasil', this)">
+                📋 3. Hasil & Laporan
+            </button>
+
         </div>
     </nav>
 
     <main class="container content-area">
 
+        <!-- ========================================= -->
         <!-- BAGIAN 1: RINGKASAN & POHON KEPUTUSAN -->
+        <!-- ========================================= -->
+
         <section id="dasbor" class="tab-content active">
+
             <!-- Ringkasan Statistik -->
             <div class="card glass-card mb-20">
+
                 <div class="card-header">
                     <h2>Ringkasan Eksekutif Persediaan</h2>
-                    <p class="card-subtitle">Gambaran umum status seluruh barang berdasarkan tingkat urgensi</p>
+
+                    <p class="card-subtitle">
+                        Gambaran umum status seluruh barang berdasarkan tingkat urgensi
+                    </p>
                 </div>
+
                 <div class="stats-grid">
+
+                    <!-- STOK URGEN -->
                     <div class="stat-card stat-urgen">
+
                         <div class="stat-icon">🚨</div>
+
                         <div class="stat-info">
                             <h3>Stok Urgen / Kritis</h3>
                             <p id="countUrgen">0</p>
                             <small>Wajib Di-restock Segera</small>
                         </div>
+
                     </div>
+
+                    <!-- STOK SEDANG -->
                     <div class="stat-card stat-sedang">
+
                         <div class="stat-icon">⚠️</div>
+
                         <div class="stat-info">
                             <h3>Stok Sedang</h3>
                             <p id="countSedang">0</p>
                             <small>Butuh Pemantauan Berkala</small>
                         </div>
+
                     </div>
+
+                    <!-- STOK AMAN -->
                     <div class="stat-card stat-aman">
+
                         <div class="stat-icon">✅</div>
+
                         <div class="stat-info">
                             <h3>Tidak Urgen / Rendah</h3>
                             <p id="countAman">0</p>
                             <small>Persediaan Masih Aman</small>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
 
             <!-- Visualisasi Pohon Keputusan -->
             <div class="card glass-card">
+
                 <div class="card-header">
+
                     <h2>Visualisasi Pohon Keputusan C4.5</h2>
-                    <p class="card-subtitle">Struktur percabangan logika penentuan status urgensi</p>
+
+                    <p class="card-subtitle">
+                        Struktur percabangan logika penentuan status urgensi
+                    </p>
+
                 </div>
+
                 <div class="tree-container">
+
                     <ul class="tree-root">
+
                         <li>
-                            <span class="tree-node">Root Node: Sisa Stok?</span>
+
+                            <span class="tree-node">
+                                Root Node: Sisa Stok?
+                            </span>
+
                             <ul>
+
+                                <!-- STOK SEDIKIT -->
                                 <li>
-                                    <span class="tree-branch">Sedikit (&le; 5)</span>
+
+                                    <span class="tree-branch">
+                                        Sedikit (&le; 5)
+                                    </span>
+
                                     <ul>
+
                                         <li>
-                                            <span class="tree-node">Penjualan?</span>
+
+                                            <span class="tree-node">
+                                                Penjualan?
+                                            </span>
+
                                             <ul>
-                                                <li><span class="tree-branch">Tinggi &rarr;</span> <span class="badge badge-urgen">Urgen</span></li>
-                                                <li><span class="tree-branch">Sedang / Rendah &rarr;</span> 
-                                                    <span class="tree-node">Lead Time?</span>
-                                                    <ul>
-                                                        <li><span class="tree-branch">Lama &rarr;</span> <span class="badge badge-urgen">Urgen</span></li>
-                                                        <li><span class="tree-branch">Cepat &rarr;</span> <span class="badge badge-sedang">Sedang</span></li>
-                                                    </ul>
+
+                                                <!-- PENJUALAN TINGGI -->
+                                                <li>
+
+                                                    <span class="tree-branch">
+                                                        Tinggi &rarr;
+                                                    </span>
+
+                                                    <span class="badge badge-urgen">
+                                                        Urgen
+                                                    </span>
+
                                                 </li>
+
+                                                <!-- PENJUALAN SEDANG / RENDAH -->
+                                                <li>
+
+                                                    <span class="tree-branch">
+                                                        Sedang / Rendah &rarr;
+                                                    </span>
+
+                                                    <span class="tree-node">
+                                                        Lead Time?
+                                                    </span>
+
+                                                    <ul>
+
+                                                        <li>
+
+                                                            <span class="tree-branch">
+                                                                Lama &rarr;
+                                                            </span>
+
+                                                            <span class="badge badge-urgen">
+                                                                Urgen
+                                                            </span>
+
+                                                        </li>
+
+                                                        <li>
+
+                                                            <span class="tree-branch">
+                                                                Cepat &rarr;
+                                                            </span>
+
+                                                            <span class="badge badge-sedang">
+                                                                Sedang
+                                                            </span>
+
+                                                        </li>
+
+                                                    </ul>
+
+                                                </li>
+
                                             </ul>
+
                                         </li>
+
                                     </ul>
+
                                 </li>
+
+
+                                <!-- STOK SEDANG -->
                                 <li>
-                                    <span class="tree-branch">Sedang (6-15) &rarr;</span> <span class="badge badge-sedang">Sedang</span>
+
+                                    <span class="tree-branch">
+                                        Sedang (6-15) &rarr;
+                                    </span>
+
+                                    <span class="badge badge-sedang">
+                                        Sedang
+                                    </span>
+
                                 </li>
+
+
+                                <!-- STOK BANYAK -->
                                 <li>
-                                    <span class="tree-branch">Banyak (&gt; 15) &rarr;</span> <span class="badge badge-tidak-urgen">Tidak Urgen</span>
+
+                                    <span class="tree-branch">
+                                        Banyak (&gt; 15) &rarr;
+                                    </span>
+
+                                    <span class="badge badge-tidak-urgen">
+                                        Tidak Urgen
+                                    </span>
+
                                 </li>
+
                             </ul>
+
                         </li>
+
                     </ul>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- BAGIAN 2: INPUT DATA (MANUAL & CSV) -->
+
+        <!-- ========================================= -->
+        <!-- BAGIAN 2: INPUT DATA -->
+        <!-- ========================================= -->
+
         <section id="input-data" class="tab-content">
+
             <div class="grid-2-cols">
-                <!-- Form Input Manual -->
+
+                <!-- INPUT MANUAL -->
                 <div class="card glass-card">
+
                     <div class="card-header">
+
                         <h2>Input Barang Manual</h2>
-                        <p class="card-subtitle">Tambah barang secara individu</p>
+
+                        <p class="card-subtitle">
+                            Tambah barang secara individu
+                        </p>
+
                     </div>
+
                     <form id="formManual">
+
+                        <!-- NAMA BARANG -->
                         <div class="form-group">
-                            <label for="namaBarang">Nama Barang</label>
-                            <input type="text" id="namaBarang" placeholder="Contoh: Minyak Goreng 2L" required>
+
+                            <label for="namaBarang">
+                                Nama Barang
+                            </label>
+
+                            <input
+                                type="text"
+                                id="namaBarang"
+                                placeholder="Contoh: Minyak Goreng 2L"
+                                required
+                            >
+
                         </div>
 
+
+                        <!-- SISA STOK -->
                         <div class="form-group">
-                            <label for="sisaStok">Sisa Stok Saat Ini</label>
+
+                            <label for="sisaStok">
+                                Sisa Stok Saat Ini
+                            </label>
+
                             <select id="sisaStok" required>
-                                <option value="Sedikit">Sedikit (&le; 5 pcs)</option>
-                                <option value="Sedang">Sedang (6 - 15 pcs)</option>
-                                <option value="Banyak">Banyak (&gt; 15 pcs)</option>
+
+                                <option value="Sedikit">
+                                    Sedikit (&le; 5 pcs)
+                                </option>
+
+                                <option value="Sedang">
+                                    Sedang (6 - 15 pcs)
+                                </option>
+
+                                <option value="Banyak">
+                                    Banyak (&gt; 15 pcs)
+                                </option>
+
                             </select>
+
                         </div>
 
+
+                        <!-- PENJUALAN -->
                         <div class="form-group">
-                            <label for="penjualan">Penjualan Harian</label>
+
+                            <label for="penjualan">
+                                Penjualan Harian
+                            </label>
+
                             <select id="penjualan" required>
-                                <option value="Tinggi">Tinggi (Laris)</option>
-                                <option value="Sedang">Sedang</option>
-                                <option value="Rendah">Rendah (Lambat)</option>
+
+                                <option value="Tinggi">
+                                    Tinggi (Laris)
+                                </option>
+
+                                <option value="Sedang">
+                                    Sedang
+                                </option>
+
+                                <option value="Rendah">
+                                    Rendah (Lambat)
+                                </option>
+
                             </select>
+
                         </div>
 
+
+                        <!-- LEAD TIME -->
                         <div class="form-group">
-                            <label for="leadTime">Lead Time Supplier</label>
+
+                            <label for="leadTime">
+                                Lead Time Supplier
+                            </label>
+
                             <select id="leadTime" required>
-                                <option value="Lama">Lama (&gt; 3 hari)</option>
-                                <option value="Cepat">Cepat (&le; 3 hari)</option>
+
+                                <option value="Lama">
+                                    Lama (&gt; 3 hari)
+                                </option>
+
+                                <option value="Cepat">
+                                    Cepat (&le; 3 hari)
+                                </option>
+
                             </select>
+
                         </div>
 
-                        <button type="submit" class="btn btn-primary">⚡ Klasifikasikan Data</button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            ⚡ Klasifikasikan Data
+                        </button>
+
                     </form>
+
                 </div>
 
-                <!-- Form Upload CSV -->
+
+                <!-- IMPORT CSV -->
                 <div class="card glass-card">
+
                     <div class="card-header">
+
                         <h2>Import Massal (CSV)</h2>
-                        <p class="card-subtitle">Unggah data historis sekaligus</p>
+
+                        <p class="card-subtitle">
+                            Unggah data historis sekaligus
+                        </p>
+
                     </div>
+
+
                     <div class="csv-info-box">
-                        <p><strong>Format Kolom Header CSV:</strong></p>
-                        <code>Nama Barang, Sisa Stok, Penjualan, Lead Time</code>
+
+                        <p>
+                            <strong>Format Kolom Header CSV:</strong>
+                        </p>
+
+                        <code>
+                            Nama Barang, Sisa Stok, Penjualan, Lead Time
+                        </code>
+
                     </div>
-                    <form id="formImport" class="mt-20">
+
+
+                    <form
+                        id="formImport"
+                        class="mt-20"
+                    >
+
                         <div class="form-group">
+
                             <div class="file-drop-area">
-                                <span class="file-msg">Pilih atau seret berkas .CSV di sini</span>
-                                <input type="file" id="fileCsv" accept=".csv" required>
+
+                                <span class="file-msg">
+                                    Pilih atau seret berkas .CSV di sini
+                                </span>
+
+                                <input
+                                    type="file"
+                                    id="fileCsv"
+                                    accept=".csv"
+                                    required
+                                >
+
                             </div>
+
                         </div>
-                        <button type="submit" class="btn btn-success">🚀 Process File CSV</button>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                        >
+                            🚀 Process File CSV
+                        </button>
+
                     </form>
+
                 </div>
+
             </div>
+
         </section>
 
+
+        <!-- ========================================= -->
         <!-- BAGIAN 3: HASIL & LAPORAN -->
+        <!-- ========================================= -->
+
         <section id="tabel-hasil" class="tab-content">
+
             <div class="card glass-card">
+
+                <!-- HEADER TABEL -->
                 <div class="table-header">
+
                     <div>
-                        <h2>Tabel Hasil Klasifikasi</h2>
-                        <p class="card-subtitle">Rekomendasi prioritas pengadaan barang</p>
+
+                        <h2>
+                            Tabel Hasil Klasifikasi
+                        </h2>
+
+                        <p class="card-subtitle">
+                            Rekomendasi prioritas pengadaan barang
+                        </p>
+
                     </div>
+
+
+                    <!-- TOMBOL AKSI -->
                     <div class="action-buttons">
-                        <button onclick="clearAllData()" class="btn btn-danger btn-sm">🗑️ Hapus Data</button>
-                        <button onclick="window.print()" class="btn btn-secondary btn-sm">🖨️ Cetak PDF</button>
+
+                        <button
+                            onclick="clearAllData()"
+                            class="btn btn-danger btn-sm"
+                        >
+                            🗑️ Hapus Data
+                        </button>
+
+                        <button
+                            onclick="window.print()"
+                            class="btn btn-secondary btn-sm"
+                        >
+                            🖨️ Cetak PDF
+                        </button>
+
                     </div>
+
                 </div>
 
+
+                <!-- FILTER -->
                 <div class="filter-container">
-                    <span class="filter-label">Filter Status:</span>
-                    <button class="btn-filter active" onclick="filterTable('all', this)">Semua</button>
-                    <button class="btn-filter filter-urgen" onclick="filterTable('Urgen', this)">Urgen</button>
-                    <button class="btn-filter filter-sedang" onclick="filterTable('Sedang', this)">Sedang</button>
-                    <button class="btn-filter filter-tidak-urgen" onclick="filterTable('Tidak Urgen', this)">Tidak Urgen</button>
+
+                    <span class="filter-label">
+                        Filter Status:
+                    </span>
+
+                    <button
+                        class="btn-filter active"
+                        onclick="filterTable('all', this)"
+                    >
+                        Semua
+                    </button>
+
+                    <button
+                        class="btn-filter filter-urgen"
+                        onclick="filterTable('Urgen', this)"
+                    >
+                        Urgen
+                    </button>
+
+                    <button
+                        class="btn-filter filter-sedang"
+                        onclick="filterTable('Sedang', this)"
+                    >
+                        Sedang
+                    </button>
+
+                    <button
+                        class="btn-filter filter-tidak-urgen"
+                        onclick="filterTable('Tidak Urgen', this)"
+                    >
+                        Tidak Urgen
+                    </button>
+
                 </div>
 
+
+                <!-- TABEL -->
                 <div class="table-responsive">
+
                     <table>
+
                         <thead>
+
                             <tr>
+
                                 <th>#</th>
-                                <th>Nama Barang</th>
-                                <th>Sisa Stok</th>
-                                <th>Penjualan</th>
-                                <th>Lead Time</th>
-                                <th>Status Urgensi</th>
+
+                                <th>
+                                    Nama Barang
+                                </th>
+
+                                <th>
+                                    Sisa Stok
+                                </th>
+
+                                <th>
+                                    Penjualan
+                                </th>
+
+                                <th>
+                                    Lead Time
+                                </th>
+
+                                <th>
+                                    Status Urgensi
+                                </th>
+
                             </tr>
+
                         </thead>
-                        <tbody id="tableBody"></tbody>
+
+
+                        <tbody id="tableBody">
+
+                        </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
+
 </body>
 </html>
+```
